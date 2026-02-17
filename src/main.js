@@ -8,14 +8,24 @@ const router = createRouter({
     routes: [
         { 
             name: 'Main',
-            path: '/', 
+            path: '/search-movie', 
             component: () => import('./views/MainPage.vue'), 
         },
         {
             name: 'Movie', 
-            path: '/movie/:id', 
+            path: '/search-movie/movie/:id', 
             component: () => import('./views/MoviePage.vue')
-        }    
+        },
+        {
+            name: 'About', 
+            path: '/search-movie/about', 
+            component: () => import('./views/AboutPage.vue')
+        },
+        {
+            name: 'Best', 
+            path: '/search-movie/best', 
+            component: () => import('./views/BestPage.vue')
+        },
     ]
 })
 

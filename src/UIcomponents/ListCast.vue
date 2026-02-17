@@ -1,6 +1,6 @@
 <template>
     <div class="actors-container">
-        <h2 class="subtitle-movie">Актёры</h2>
+        <h2 class="subtitle">Актёры</h2>
         <div class="actors">
             <div class="actor-item" v-for="actor in changeVisibleActors">
                 <div class="img-actor-container">

@@ -116,6 +116,13 @@ button {
   content: none;
 }
 
-.subtitle-movie{
+.subtitle{
   margin-bottom: 0.5rem;
+}
+
+.page-surface-container{
+  border-radius: 10px;
+  background-color: var(--surface-background);
+  padding: 1rem;
+  margin: 1rem 0;
 }

@@ -1,7 +1,7 @@
 <template>
     <header class="header-container">
         <div class="logo-container">
-            <RouterLink to="/">
+            <RouterLink to="/search-movie">
                 <img src="/src/assets/images/searchmovie_logo_light.svg" alt="" class="logo" v-if="this.theme === 'dark'">
                 <img src="/src/assets/images/searchmovie_logo_dark.svg" alt="" class="logo" v-if="this.theme === 'light'">
             </RouterLink>
@@ -10,9 +10,9 @@
 
             <nav class="navigation-container">
                 <ul class="navigation-list">
-                    <li class="nav-elem"><RouterLink to="/">Главная</RouterLink></li>
-                    <li class="nav-elem"><RouterLink to="">Лучшие</RouterLink></li>
-                    <li class="nav-elem"><RouterLink to="">О сайте</RouterLink></li>
+                    <li class="nav-elem"><RouterLink to="/search-movie">Главная</RouterLink></li>
+                    <li class="nav-elem"><RouterLink to="/search-movie/best">Лучшие</RouterLink></li>
+                    <li class="nav-elem"><RouterLink to="/search-movie/about">О сайте</RouterLink></li>
                 </ul>
             </nav>
 

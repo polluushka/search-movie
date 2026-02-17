@@ -1,6 +1,6 @@
 <template>
     <div class="videos-container">
-        <h2 class="subtitle-movie">Трейлеры</h2>
+        <h2 class="subtitle">Трейлеры</h2>
         <div class="videos">
             <ui-button v-if="videos.length > 3" id="leftVideo"><i class="fa-solid fa-chevron-left"></i></ui-button>
             <div class="video-item" v-for="video in videos">

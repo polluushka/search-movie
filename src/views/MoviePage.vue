@@ -1,5 +1,5 @@
 <template>
-    <div class="page-movie-container">
+    <div class="page-surface-container">
         <movie-info v-if="loaded" :movie="movie"></movie-info>
 
         <list-cast :actors="actors" v-if="loaded && actors.length > 0"></list-cast>
