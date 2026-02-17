@@ -62,7 +62,7 @@
             },
 
             openMoviePage() {
-                this.$router.push(`/movie/${this.movie.id}`);
+                this.$router.push(`/search-movie/movie/${this.movie.id}`);
             }
 
         },
