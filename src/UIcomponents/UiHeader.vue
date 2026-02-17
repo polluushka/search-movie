@@ -1,27 +1,47 @@
 <template>
     <header class="header-container">
         <div class="logo-container">
-            <img src="/src/assets/images/searchmovie_logo.svg" alt="" class="logo">
+            <RouterLink to="/">
+                <img src="/src/assets/images/searchmovie_logo_light.svg" alt="" class="logo" v-if="this.theme === 'dark'">
+                <img src="/src/assets/images/searchmovie_logo_dark.svg" alt="" class="logo" v-if="this.theme === 'light'">
+            </RouterLink>
+
         </div>
 
             <nav class="navigation-container">
                 <ul class="navigation-list">
-                    <li class="nav-elem"><a href="/">Главная</a></li>
-                    <li class="nav-elem"><a href="">Лучшие</a></li>
-                    <li class="nav-elem"><a href="">О сайте</a></li>
+                    <li class="nav-elem"><RouterLink to="/">Главная</RouterLink></li>
+                    <li class="nav-elem"><RouterLink to="">Лучшие</RouterLink></li>
+                    <li class="nav-elem"><RouterLink to="">О сайте</RouterLink></li>
                 </ul>
             </nav>
 
-            <div class="theme-container">
-                <button class="theme-button">
-                    <!-- <i class="fa-solid fa-moon fa-rotate-by"></i> -->
-                    <i class="fa-solid fa-sun"></i>
-                </button>
-                
-            </div>
+        <change-theme-button @currentTheme="getTheme"></change-theme-button>
         
     </header>
 </template>
+
+<script>
+    import ChangeThemeButton from './ChangeThemeButton.vue';
+
+    export default {
+        components: {
+            ChangeThemeButton
+        },
+
+        data() {
+            return {
+                theme: 'dark'
+            }
+        },
+
+        methods: {
+            getTheme(currentTheme) {
+                this.theme = currentTheme;
+            }
+        }
+    }
+</script>
 
 <style scoped>
     .header-container {
@@ -30,7 +50,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 1rem 2rem;
-        background-color: #181b22;
+        background-color: var(--surface-background);
     }
 
     .navigation-list {
@@ -44,7 +64,7 @@
     }
     
     .nav-elem a{
-        color: #e6e6e6;
+        color: var(--title-color);
     }
 
     .logo-container {
@@ -55,18 +75,4 @@
         width: 100%;
     }
 
-    .theme-button{
-        font-size: 1.5rem;
-        --fa-rotate-angle: 220deg;
-        color: #e6e6e6;
-        background-color: transparent;
-        border: none;
-        width: auto;
-        cursor: pointer;
-        transition: 0.5s;
-    }
-
-    /* .theme-button:hover{
-
-    } */
 </style>

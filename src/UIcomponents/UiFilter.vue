@@ -156,16 +156,16 @@
         position: absolute;
         padding: 1rem;
         margin-top: 3rem;
-        background-color: #181b22;
+        background-color: var(--surface-background);
         border-radius: 5px;
         font-size: 0.75rem;
-        color: #e6e6e6;
+        color: var(--title-color);
         transition: 0.3s;
     }
 
     .filter-menu-container:hover{
-        background: #1c2128;
-        box-shadow: 1px 1px 10px 5px rgb(24, 27, 34);
+        background: var(--filter-background-hover);
+        box-shadow: 1px 1px 10px 5px var(--surface-background);
         transition: 0.3s;
     }
 
@@ -175,24 +175,24 @@
     }
 
     .filter-button-menu{
-        color: #e6e6e6;
+        color: var(--title-color);
         background: transparent;
         border-radius: 5px;
         margin: 0 0.5rem 0.5rem 0;
         padding: 0.5rem;
-        border: 1px solid #e6e6e6;
+        border: 1px solid var(--title-color);
         cursor: pointer;
         transition: 0.2s;
     }
 
     .filter-button-menu:hover{
-        background-color: #e6e6e6;
+        background-color: var(--title-color);
         color: #181b22;
         transition: 0.2s;
     }
 
     .active-button {
-        background-color: #e6e6e6;
+        background-color: var(--title-color);
         color: #181b22;
     }
 
@@ -233,8 +233,8 @@
 
     .input-date-filter {
         background: transparent;
-        color: #e6e6e6;
-        border: 1px solid #e6e6e6;
+        color: var(--title-color);
+        border: 1px solid var(--title-color);
         border-radius: 5px;
         padding: 0.5rem;
         width: 80%;

@@ -79,37 +79,41 @@
     }
 </script>
 
-<style>
+<style scoped>
 
-.pagination-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-}
+    .pagination-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+    }
 
-.button-pagination {
-    margin: 0 0.5rem;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
-    background: transparent;
-    border: 1px solid #e6e6e6;
-    color: #e6e6e6;
-    border-radius: 5px;
-    transition: 0.3s;
-}
+    .button-pagination {
+        margin: 0 0.5rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+        background: transparent;
+        border: 1px solid var(--title-color);
+        color: var(--title-color);
+        border-radius: 5px;
+        transition: 0.3s;
+    }
 
-.current-page-button,
-.button-pagination:hover {
-    background: #e6e6e6;
-    color: #0f1115;
-    transition: 0.3s;
-}
+    .current-page-button,
+    .button-pagination:hover {
+        background: var(--title-color);
+        color: var(--background-color);
+        transition: 0.3s;
+    }
 
-.button-pagination:active {
-    transform: translateY(2px);
-}
+    .button-pagination:active {
+        transform: translateY(2px);
+    }
+
+    .button-classic{
+        padding: 0.5rem;
+    }
 
 
 </style>

@@ -33,7 +33,7 @@
     }
 
     .search-input::placeholder {
-        color: rgba(154, 160, 166, 0.5);
+        color: var(--placeholder-color);
     }
 
 </style>
