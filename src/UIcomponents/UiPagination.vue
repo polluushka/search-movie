@@ -5,7 +5,8 @@
              @click="openPreviousPage()"><i class="fa-solid fa-chevron-left"></i></ui-button>
             <button class="button-pagination" v-for="page in updatePaginationArray"
              @click="getPaginationArray(page)" :class="this.currentPage === page ? 'current-page-button' : ''">{{ page }}</button>
-            <ui-button @click="openNextPage()"><i class="fa-solid fa-chevron-right"></i></ui-button>
+            <ui-button @click="openNextPage()" v-if="this.currentPage < totalPages"><i class="fa-solid fa-chevron-right"></i></ui-button>
+            {{ totalPages }}
         </div>
         
 
@@ -23,26 +24,36 @@
 
         emits: ['updateCountPage'],
 
+        props: ['totalPages'],
+        
         data() {
             return {
-                pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                pagination: [],
                 minPage: 1,
                 maxPage: 9,
                 currentPage: 1
-
             }
         },
 
         methods: {
             getPaginationArray(page) {
                 this.currentPage = page;
-
-                if (this.currentPage > 5) {
-                    this.minPage = page - 4;
-                    this.maxPage = page + 4;
-                } else {
+                if (this.totalPages <= 9) {
                     this.minPage = 1;
-                    this.maxPage = 9;
+                    this.maxPage = this.totalPages;
+                } else {
+                    if(this.currentPage + 4 <= this.totalPages) {
+                        if (this.currentPage > 5) {
+                            this.minPage = page - 4;
+                            this.maxPage = page + 4;
+                        } else {
+                            this.minPage = 1;
+                            this.maxPage = 9;
+                        } 
+                    } else {
+                        this.minPage = this.totalPages - 8;
+                        this.maxPage = this.totalPages;
+                    }
                 }
                 this.$emit('updateCountPage', this.currentPage);
             },
@@ -66,7 +77,14 @@
                 for (let page = this.minPage; page <= this.maxPage; page++) {
                     this.pagination.push(page);
                 }
-                return this.pagination;
+                return this.pagination;                    
+
+            }
+        },
+
+        watch: {
+            totalPages() {
+                this.getPaginationArray(this.currentPage || 1)
             }
         }
     }

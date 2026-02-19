@@ -66,6 +66,11 @@ button {
   cursor: pointer;
 }
 
+.hidden-block {
+  pointer-events: none;
+  visibility: hidden;
+}
+
 #app {
   max-width: 1920px;
   margin: auto;
@@ -132,4 +137,24 @@ button {
   background-color: var(--surface-background);
   padding: 1rem;
   margin: 1rem 0;
+}
+
+.load-animation-container{
+  margin-top: 2rem;
+  height: 60vh;
+  color: var(--text-color);
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.icon-container,
+.poster-container,
+.img-actor-container{
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
 }

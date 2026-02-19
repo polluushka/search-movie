@@ -5,8 +5,15 @@
       <ui-sorting @sortData="getDataSort"></ui-sorting>
       
     </div>
-    <list-movies v-if="loated" :movies="bestMovies" :genres="genres"></list-movies>
-    <ui-pagination :countPages="countPages" @updateCountPage="openNewPage"></ui-pagination>
+
+    <div class="load-animation-container" v-if="!loaded">
+      <i class="fa-solid fa-circle-notch fa-spin"></i>
+    </div>
+    <list-movies v-if="loaded" :movies="bestMovies" :genres="genres"></list-movies>
+    <div class="pagination-hidden-container" :class="this.loaded ? '':'hidden-block'">
+        <ui-pagination :countPages="countPages" @updateCountPage="openNewPage"></ui-pagination>
+    </div>
+    
 </template>
 
 <script>
@@ -29,7 +36,7 @@
                 urlBase: "https://api.themoviedb.org/3",
                 bestMovies: [],
                 genres: [],
-                loated: false,
+                loaded: false,
                 domenFilter: '',
                 genresFilter: '',
                 ratingFilter: [],
@@ -42,6 +49,7 @@
 
         methods: {
             async getBestMovies() {
+                this.loaded = false;
                 const apiKey = import.meta.env.VITE_TMDB_KEY;
                 const response = await fetch(`${this.urlBase}/movie/top_rated?api_key=${apiKey}&language=ru-RU&page=${this.countPages}`);
 
@@ -52,7 +60,7 @@
                     console.log('kdjfghd')
                 }
 
-                if (this.genres.length > 0) this.loated = true;
+                if (this.genres.length > 0) this.loaded = true;
             },
 
             async getDataGenres() {
@@ -66,10 +74,11 @@
                     console.log('kdjfghd')
                 }
 
-                if (this.bestMovies.length > 0) this.loated = true;
+                if (this.bestMovies.length > 0) this.loaded = true;
             },
 
             async getFilterMovies() {
+                this.loaded = false;
                 this.domenFilter = '';
                 if (this.genresFilter.length > 0) this.domenFilter += `&with_genres=${this.genresFilter}`;
                 if (this.ratingFilter.length > 0) this.domenFilter += `&vote_average.gte=${this.ratingFilter[0]}&vote_average.lte=${this.ratingFilter[1]}`;
@@ -87,7 +96,7 @@
                 } else {
                     console.log('kdjfghd')
                 }
-            
+                this.loaded = true;
             },
 
             getDataFilter(genresSelected, ratingSelected, fromDate, toDate) {

@@ -12,7 +12,6 @@
                 <ul class="navigation-list">
                     <li class="nav-elem"><RouterLink to="/search-movie">Популярное</RouterLink></li>
                     <li class="nav-elem"><RouterLink to="/search-movie/best">Лучшие</RouterLink></li>
-                    <li class="nav-elem"><RouterLink to="/search-movie/series">Сериалы</RouterLink></li>
                     <li class="nav-elem"><RouterLink to="/search-movie/about">О сайте</RouterLink></li>
                 </ul>
             </nav>

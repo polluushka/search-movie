@@ -12,11 +12,18 @@
     </div>
     
 
-    <list-movies v-if="loated" :movies="movies" :genres="genres" >
+    <list-movies v-if="this.loaded" :movies="movies" :genres="genres" >
 
     </list-movies>
 
-    <ui-pagination :countPages="countPages" @updateCountPage="openNewPage"></ui-pagination>
+    <div class="load-animation-container" v-if="!this.loaded">
+      <i class="fa-solid fa-circle-notch fa-spin"></i>
+    </div>
+    
+    <div class="pagination-hidden-container" :class="this.loaded && this.totalPages > 1 ? '':'hidden-block'">
+      <ui-pagination :countPages="countPages" @updateCountPage="openNewPage" :totalPages="totalPages"></ui-pagination>
+    </div>
+    
 
 </template>
 
@@ -53,25 +60,27 @@
         fromDateFilter: '',
         toDateFilter: '',
         typeSort: '',
-        loated: false,
-        countPages: 1
-        
+        loaded: false,
+        countPages: 1,
+        totalPages: null
       }
     },
 
     methods: {
       async getDataMovies() {
+        this.loaded = false;
         const apiKey = import.meta.env.VITE_TMDB_KEY;
         const response = await fetch(`${this.urlBase}/movie/popular?api_key=${apiKey}&language=ru-RU&page=${this.countPages}`);
 
         if(response.ok) {
           const data = await response.json();
+          this.totalPages = Number(data.total_pages);
           this.movies = data.results;
         } else {
           console.log('kdjfghd')
         }
 
-        if (this.genres.length > 0) this.loated = true;
+        if (this.genres.length > 0) this.loaded = true;
       },
 
       async getDataGenres() {
@@ -85,10 +94,12 @@
           console.log('kdjfghd')
         }
 
-        if (this.movies.length > 0) this.loated = true;
+        if (this.movies.length > 0) this.loaded = true;
       },
 
       async getFilterMovies() {
+        
+        this.loaded = false;
         this.domenFilter = '';
         if (this.genresFilter.length > 0) this.domenFilter += `&with_genres=${this.genresFilter}`;
         if (this.ratingFilter.length > 0) this.domenFilter += `&vote_average.gte=${this.ratingFilter[0]}&vote_average.lte=${this.ratingFilter[1]}`;
@@ -98,15 +109,16 @@
 
         const apiKey = import.meta.env.VITE_TMDB_KEY;
 
-        const response = await fetch(`${this.urlBase}/discover/movie?api_key=${apiKey}&with_genres=${this.domenFilter}&vote_count.gte=100&language=ru-RU&page=${this.countPages}`);
+        const response = await fetch(`${this.urlBase}/discover/movie?api_key=${apiKey}&with_genres=${this.domenFilter}&language=ru-RU&page=${this.countPages}`);
 
         if(response.ok) {
           const data = await response.json();
+          this.totalPages = Number(data.total_pages);
           this.movies = data.results;
         } else {
           console.log('kdjfghd')
         }
-      
+        this.loaded = true;
       },
 
       getDataFilter(genresSelected, ratingSelected, fromDate, toDate) {
@@ -165,4 +177,9 @@
     display: flex;
       width: 55%;
   }
+
+  .load-animation-container{
+    margin-bottom: 2rem;
+  }
+
 </style>

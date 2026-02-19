@@ -4,7 +4,9 @@
         <div class="actors">
             <div class="actor-item" v-for="actor in changeVisibleActors">
                 <div class="img-actor-container">
-                    <img :src="`https://image.tmdb.org/t/p/w185/${actor.profile_path}`" alt="" class="img-actor">
+                    <img :src="`https://image.tmdb.org/t/p/w185/${actor.profile_path}`" alt="" class="img-actor"
+                     v-if="actor.profile_path && actor.profile_path !== null">
+                    <i class="fa-solid fa-eye-slash" v-if="!actor.profile_path && actor.profile_path === null"></i>
                 </div>
                 <div class="actor-text">
                     <h4 style="margin-bottom: 0.5rem;">{{ actor.name }}</h4>
@@ -13,7 +15,8 @@
             </div>   
         </div>
         <div class="button-visible-container">
-            <button class="button-visible" v-if="!this.actorsVisible" @click="this.actorsVisible = true">Показать больше...</button>
+            <button class="button-visible" v-if="!this.actorsVisible && this.actors.length > this.visibleActors"
+                @click="this.actorsVisible = true">Показать больше...</button>
             <button class="button-visible" v-if="this.actorsVisible" @click="this.actorsVisible = false">Свернуть</button>
         </div>
     </div>
@@ -68,6 +71,7 @@
         width: 100%;
         height: 10rem;
         margin-bottom: 0.5rem;
+        font-size: 1.5rem;
     }
 
     .img-actor {

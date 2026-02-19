@@ -1,5 +1,10 @@
 <template>
     <div class="page-surface-container">
+
+        <div class="load-animation-container" v-if="!loaded">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </div>
+
         <movie-info v-if="loaded" :movie="movie"></movie-info>
 
         <list-cast :actors="actors" v-if="loaded && actors.length > 0"></list-cast>

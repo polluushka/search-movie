@@ -3,8 +3,13 @@
     <div class="item-movie-container" @click="openMoviePage">
         <div class="item-movie-content">
             <div class="movie-img-container">
-                <ui-rating :rating="movie.vote_average"></ui-rating>
-                <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" loading="lazy" alt="" class="item-movie-img">
+                <ui-rating :rating="movie.vote_average" :voteCount="movie.vote_count"></ui-rating>
+                <div class="icon-container" v-if="!movie.poster_path && movie.poster_path === null">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </div>
+                <img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" 
+                v-if="movie.poster_path && movie.poster_path !== null"
+                loading="lazy" alt="" class="item-movie-img">
             </div>
             
             <div class="item-movie-title">
@@ -13,7 +18,9 @@
             <div class="item-movie-description">
                 <p>{{ returnYearRelease }}</p>
                 <ul class="list-row-container">
-                    <li class="list-row-elem" v-for="genre in getGenres(movie.genre_ids)">{{ genre.name }}</li>
+                    <li class="list-row-elem" v-if="movie.genre_ids.length > 0"
+                    v-for="genre in getGenres(movie.genre_ids)">{{ genre.name }}</li>
+                    <li class="list-row-elem" v-else>—</li>
                 </ul>
             </div>
 
@@ -54,7 +61,6 @@
 
         methods: {
             getGenres(movieGenresId) {
-
                 return movieGenresId.map(genreId => {
                     return this.genres.find(genre => genre.id == genreId);
                 })
@@ -69,6 +75,7 @@
 
         computed: {
             returnYearRelease() {
+                if(this.movie.release_date === null) return '—';
                 const releaseDate = new Date(this.movie.release_date);
                 this.yearRelease = releaseDate.getFullYear();
                 return this.yearRelease;
@@ -132,6 +139,10 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
+    }
+
+    .icon-container {
+        height: 100%;
     }
 
 </style>
