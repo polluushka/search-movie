@@ -12,7 +12,7 @@
     </div>
     
 
-    <list-movies v-if="loated" :movies="movies" :genres="genres">
+    <list-movies v-if="loated" :movies="movies" :genres="genres" >
 
     </list-movies>
 
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-  import ItemMovie from '../components/ItemMovie.vue';
   import ListMovies from '../components/ListMovies.vue';
   import UiHeader from '../UIcomponents/UiHeader.vue';
   import UiSearch from '../UIcomponents/UiSearch.vue';
@@ -33,7 +32,6 @@
   export default {
 
     components: {
-      ItemMovie,
       ListMovies,
       UiHeader,
       UiSearch,
@@ -74,8 +72,6 @@
         }
 
         if (this.genres.length > 0) this.loated = true;
-
-
       },
 
       async getDataGenres() {
@@ -155,11 +151,7 @@
         
       }
     },
-
-    computed: {
-
-    },
-
+    
     mounted() {
       this.getDataMovies();
       this.getDataGenres();
@@ -168,12 +160,6 @@
 </script>
 
 <style scoped>
-  .filters-container{
-    width: 100%;
-    margin: 2rem 0 1rem 0;
-    display: flex;
-    justify-content: space-between;
-  }
 
   .search-button-container{
     display: flex;

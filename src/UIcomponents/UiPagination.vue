@@ -23,13 +23,6 @@
 
         emits: ['updateCountPage'],
 
-        // props: {
-        //     countPages: {
-        //         type: Number,
-        //         required: true
-        //     }
-        // },
-
         data() {
             return {
                 pagination: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],

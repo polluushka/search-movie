@@ -19,7 +19,7 @@
 
         data() {
             return {
-                sortValue: 'popularity.desc'
+                sortValue: this.$route.path.includes('best') ? 'vote_average.desc' : 'popularity.desc'
             }
         },
 

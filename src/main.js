@@ -26,6 +26,12 @@ const router = createRouter({
             path: '/search-movie/best', 
             component: () => import('./views/BestPage.vue')
         },
+
+        {
+            name: 'Series', 
+            path: '/search-movie/series', 
+            component: () => import('./views/SeriesPage.vue')
+        },
     ]
 })
 
