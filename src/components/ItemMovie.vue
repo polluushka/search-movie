@@ -75,7 +75,7 @@
 
         computed: {
             returnYearRelease() {
-                if(this.movie.release_date === null) return '—';
+                if(this.movie.release_date.length === 0 || this.movie.release_date === null) return '—';
                 const releaseDate = new Date(this.movie.release_date);
                 this.yearRelease = releaseDate.getFullYear();
                 return this.yearRelease;

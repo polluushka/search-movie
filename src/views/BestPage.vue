@@ -1,19 +1,25 @@
 <template>
     <div class="filters-container">
 
-      <ui-filter :genres="genres" @filterData="getDataFilter"></ui-filter>
-      <ui-sorting @sortData="getDataSort"></ui-sorting>
+        <ui-filter :genres="genres" @filterData="getDataFilter"></ui-filter>
+        <ui-sorting @sortData="getDataSort"></ui-sorting>
       
     </div>
 
+    <list-movies v-if="loaded && this.bestMovies.length > 0" :movies="bestMovies" :genres="genres"></list-movies>
+
+    <div class="not-found-block" v-if="loaded && this.bestMovies.length === 0">
+        <p>По вашему запросу ничего не найдено</p>
+    </div>    
+
     <div class="load-animation-container" v-if="!loaded">
-      <i class="fa-solid fa-circle-notch fa-spin"></i>
+        <i class="fa-solid fa-circle-notch fa-spin"></i>
     </div>
-    <list-movies v-if="loaded" :movies="bestMovies" :genres="genres"></list-movies>
+
     <div class="pagination-hidden-container" :class="this.loaded ? '':'hidden-block'">
-        <ui-pagination :countPages="countPages" @updateCountPage="openNewPage"></ui-pagination>
+        <ui-pagination :countPages="countPages" @updateCountPage="openNewPage" :totalPages="totalPages"></ui-pagination>
     </div>
-    
+
 </template>
 
 <script>
@@ -37,13 +43,14 @@
                 bestMovies: [],
                 genres: [],
                 loaded: false,
-                domenFilter: '',
-                genresFilter: '',
+                domenFilter: "",
+                genresFilter: "",
                 ratingFilter: [],
-                fromDateFilter: '',
-                toDateFilter: '',
-                typeSort: 'vote_average.desc',
-                countPages: 1
+                fromDateFilter: "",
+                toDateFilter: "",
+                typeSort: "vote_average.desc",
+                countPages: 1,
+                totalPages: null
             }
         },
 
@@ -55,6 +62,7 @@
 
                 if(response.ok) {
                     const data = await response.json();
+                    this.totalPages = Number(data.total_pages);
                     this.bestMovies = data.results;
                 } else {
                     console.log('kdjfghd')
@@ -65,7 +73,7 @@
 
             async getDataGenres() {
                 const apiKey = import.meta.env.VITE_TMDB_KEY;
-                const response = await fetch(`${this.urlBase}/genre/movie/list?api_key=${apiKey}&language=ru-RU`);
+                const response = await fetch(`${this.urlBase}/genre/movie/list?api_key=${apiKey}&vote_count.gte=1000&language=ru-RU`);
 
                 if(response.ok) {
                     const data = await response.json();
@@ -88,10 +96,11 @@
 
                 const apiKey = import.meta.env.VITE_TMDB_KEY;
 
-                const response = await fetch(`${this.urlBase}/discover/movie?api_key=${apiKey}&with_genres=${this.domenFilter}&vote_count.gte=100&language=ru-RU&page=${this.countPages}`);
+                const response = await fetch(`${this.urlBase}/discover/movie?api_key=${apiKey}&with_genres=${this.domenFilter}&vote_count.gte=1000&language=ru-RU&page=${this.countPages}`);
 
                 if(response.ok) {
                     const data = await response.json();
+                    this.totalPages = Number(data.total_pages);
                     this.bestMovies = data.results;
                 } else {
                     console.log('kdjfghd')

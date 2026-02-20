@@ -6,9 +6,7 @@
             <button class="button-pagination" v-for="page in updatePaginationArray"
              @click="getPaginationArray(page)" :class="this.currentPage === page ? 'current-page-button' : ''">{{ page }}</button>
             <ui-button @click="openNextPage()" v-if="this.currentPage < totalPages"><i class="fa-solid fa-chevron-right"></i></ui-button>
-            {{ totalPages }}
         </div>
-        
 
     </div>
 </template>
@@ -24,7 +22,7 @@
 
         emits: ['updateCountPage'],
 
-        props: ['totalPages'],
+        props: ['totalPages', 'countPages'],
         
         data() {
             return {
@@ -84,8 +82,12 @@
 
         watch: {
             totalPages() {
-                this.getPaginationArray(this.currentPage || 1)
-            }
+                this.getPaginationArray(this.countPages)
+            },
+
+            countPages() {
+                this.getPaginationArray(this.countPages)
+            },
         }
     }
 </script>

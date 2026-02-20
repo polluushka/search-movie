@@ -96,13 +96,14 @@ button {
   width: 100%;
   background: var(--surface-background);
   border: none;
-  color: var(--title-color);
+  color: var(--text-color);
   cursor: pointer;
   transition: 0.3s;
 }
 
 .filter-settings:hover,
-.filter-settings:active {
+.filter-settings:active,
+.filter-settings:focus {
   background: var(--filter-background-hover);
   transition: 0.3s;
 }
@@ -157,4 +158,9 @@ button {
   justify-content: center;
   align-items: center;
   color: var(--text-color);
+}
+
+.not-found-block {
+  text-align: center;
+  margin-top: 2rem;
 }
