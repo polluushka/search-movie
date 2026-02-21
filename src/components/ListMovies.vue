@@ -30,11 +30,6 @@
             }
         },
 
-        data() {
-            return {
-
-            }
-        }
     }
 
 </script>

@@ -122,6 +122,7 @@
             },
 
             sendDataFilter() {
+                this.toogleHiddenMenu();
                 this.$emit('filterData', this.genresFilter, this.rangeRating, this.fromDateFilter, this.toDateFilter);
             }
         }
