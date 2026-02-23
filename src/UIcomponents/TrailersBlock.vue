@@ -114,5 +114,13 @@
         left: 0;
     }
 
+    @media (max-width: 375px) {
+
+        .video-item{
+            flex: 0 0 calc((100% - 0.5rem));
+        }
+
+    }
+
 
 </style>

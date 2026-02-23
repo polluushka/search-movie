@@ -5,6 +5,11 @@
             <i class="fa-solid fa-circle-notch fa-spin"></i>
         </div>
 
+        <div class="error-block" v-if="loaded && this.errorMessage !== null">
+            <p>{{ this.errorMessage }}</p>
+        </div>    
+
+
         <movie-info v-if="loaded" :movie="movie"></movie-info>
 
         <list-cast :actors="actors" v-if="loaded && actors.length > 0"></list-cast>
@@ -36,6 +41,7 @@
                 videos: [],
                 actors: [],
                 loaded: false,
+                errorMessage: null
             }
         },
 
@@ -47,8 +53,9 @@
                 
                 if(responseMovie.ok) {
                     this.movie = await responseMovie.json();
+                    this.errorMessage = null;
                 } else {
-                    console.log('kdjfghd')
+                    this.errorMessage = `Ошибка запроса: статус ${responseMovie.status}`;
                 }
 
                 const responseVideos = await fetch(`${this.urlBase}/movie/${idMovie}/videos?api_key=${apiKey}&language=ru-RU`);
@@ -56,8 +63,9 @@
                 if(responseVideos.ok) {
                     const data = await responseVideos.json();
                     this.videos = data.results;
+                    this.errorMessage = null;
                 } else {
-                    console.log('kdjfghd')
+                    this.errorMessage = `Ошибка запроса: статус ${responseVideos.status}`;
                 }
 
                 const responseActors = await fetch(`${this.urlBase}/movie/${idMovie}/credits?api_key=${apiKey}&language=ru-RU`);
@@ -65,8 +73,9 @@
                 if(responseActors.ok) {
                     const data = await responseActors.json();
                     this.actors = data.cast;
+                    this.errorMessage = null;
                 } else {
-                    console.log('kdjfghd')
+                    this.errorMessage = `Ошибка запроса: статус ${responseActors.status}`;
                 }
 
                 this.loaded = true;

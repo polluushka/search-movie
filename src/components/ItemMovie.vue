@@ -141,4 +141,15 @@
         height: 100%;
     }
 
+    @media (max-width: 375px) {
+
+        .movie-img-container{
+            width: 100%;
+            height: 15rem;
+            background-color: var(--background-color);
+            animation: pulse 1.2s infinite;
+        }
+
+    }
+
 </style>

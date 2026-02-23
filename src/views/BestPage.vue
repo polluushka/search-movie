@@ -6,17 +6,21 @@
       
     </div>
 
-    <list-movies v-if="loaded && this.bestMovies.length > 0" :movies="bestMovies" :genres="genres"></list-movies>
+    <list-movies v-if="this.loaded && this.bestMovies.length > 0" :movies="bestMovies" :genres="genres"></list-movies>
 
-    <div class="not-found-block" v-if="loaded && this.bestMovies.length === 0">
+    <div class="error-block" v-if="this.loaded && this.bestMovies.length === 0 && this.errorMessage === null">
         <p>По вашему запросу ничего не найдено</p>
-    </div>    
+    </div>
 
-    <div class="load-animation-container" v-if="!loaded">
+    <div class="error-block" v-if="this.loaded && this.errorMessage !== null">
+        <p>{{ this.errorMessage }}</p>
+    </div>    
+    
+    <div class="load-animation-container" v-if="!this.loaded">
         <i class="fa-solid fa-circle-notch fa-spin"></i>
     </div>
 
-    <div class="pagination-hidden-container" :class="this.loaded ? '':'hidden-block'">
+    <div class="pagination-hidden-container" :class="this.loaded && this.errorMessage === null && this.totalPages > 1 ? '':'hidden-block'">
         <ui-pagination :countPages="countPages" @updateCountPage="openNewPage" :totalPages="totalPages"></ui-pagination>
     </div>
 
@@ -50,7 +54,8 @@
                 toDateFilter: "",
                 typeSort: "vote_average.desc",
                 countPages: 1,
-                totalPages: null
+                totalPages: null,
+                errorMessage: null
             }
         },
 
@@ -64,8 +69,10 @@
                     const data = await response.json();
                     this.totalPages = Number(data.total_pages);
                     this.bestMovies = data.results;
+                    this.errorMessage = null;
                 } else {
-                    console.log('kdjfghd')
+                    this.totalPages = null;
+                    this.errorMessage = `Ошибка запроса: статус ${response.status}`;
                 }
 
                 if (this.genres.length > 0) this.loaded = true;
@@ -78,8 +85,10 @@
                 if(response.ok) {
                     const data = await response.json();
                     this.genres = data.genres;
+                    this.errorMessage = null;
                 } else {
-                    console.log('kdjfghd')
+                    this.totalPages = null;
+                    this.errorMessage = `Ошибка запроса: статус ${response.status}`;
                 }
 
                 if (this.bestMovies.length > 0) this.loaded = true;
@@ -102,8 +111,10 @@
                     const data = await response.json();
                     this.totalPages = Number(data.total_pages);
                     this.bestMovies = data.results;
+                    this.errorMessage = null;
                 } else {
-                    console.log('kdjfghd')
+                    this.totalPages = null;
+                    this.errorMessage = `Ошибка запроса: статус ${response.status}`;
                 }
                 this.loaded = true;
             },

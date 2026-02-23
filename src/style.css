@@ -160,7 +160,22 @@ button {
   color: var(--text-color);
 }
 
-.not-found-block {
+.error-block {
   text-align: center;
   margin-top: 2rem;
+}
+
+@media (max-width: 375px) {
+  html{
+    font-size: 12px;
+  }
+
+  #app {
+    max-width: 375px;
+    margin: auto;
+  }
+
+  .container {
+    width: 90%;
+  }
 }

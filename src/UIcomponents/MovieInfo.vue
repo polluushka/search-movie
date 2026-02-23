@@ -159,7 +159,7 @@
 
     .title-rating-line{
         display: flex;
-        align-items: center;
+        align-items: start;
         justify-content: space-between;
         margin-bottom: 1rem;
     }
@@ -188,7 +188,38 @@
     }
 
     .block-param{
-        margin-right: 3rem;
-        
+        margin-right: 3rem;  
+    }
+
+    .movie-rating-container{
+        margin: 0;
+    }
+
+
+    @media (max-width: 375px) {
+
+        .main-movie-container{
+            flex-direction: column;
+        }
+
+        .poster-container{
+            width: 100%;
+            height: 35rem;
+            background-color: var(--background-color);
+            animation: pulse 1.2s infinite;
+        }
+
+        .movie-full-description{
+            width: 100%;
+        }
+    
+        .title-rating-line{
+            margin: 1rem 0;
+        }
+
+        .row-block {
+            flex-wrap: wrap;
+        }
+
     }
 </style>
