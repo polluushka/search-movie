@@ -9,8 +9,6 @@
             <option value="primary_release_date.desc">Сначала новые</option>
             <option value="primary_release_date.asc">Сначала старые</option>
         </select>
-        <div class="mask-icon"></div>
-
     </div>
 </template>
 
@@ -39,7 +37,7 @@
 <style scoped> 
 
     .sorting-container{
-        width: 24%;
+        width: 55%;
         display: flex;
     }
 

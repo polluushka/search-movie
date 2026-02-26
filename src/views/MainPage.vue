@@ -1,13 +1,15 @@
 <template>
 
     <div class="filters-container">
-      <div class="search-button-container">
+      <div class="filter-item-container search-item-container">
         <ui-search v-model="searchValue"></ui-search>
       </div>
       
-      <ui-filter :genres="genres" @filterData="getDataFilter"></ui-filter>
-      <ui-sorting @sortData="getDataSort"></ui-sorting>
-      
+      <div class="filter-item-container">
+        <ui-filter :genres="genres" @filterData="getDataFilter"></ui-filter>
+        <ui-sorting @sortData="getDataSort"></ui-sorting>        
+      </div>
+
     </div>
     
 
@@ -197,13 +199,19 @@
 
 <style scoped>
 
-  .search-button-container{
-    display: flex;
-      width: 55%;
+  .search-item-container{
+    width: 55%;
   }
 
   .load-animation-container{
     margin-bottom: 2rem;
+  }
+
+  @media (max-width: 375px) {
+    .search-item-container{
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
   }
 
 </style>

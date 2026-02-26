@@ -13,7 +13,6 @@
         border: none;
         height: 100%;
         font-size: 1rem;
-        padding: 0.5rem 1rem;
         background: #6b8afd;
         color: #e6e6e6;
         transition: 0.3s;

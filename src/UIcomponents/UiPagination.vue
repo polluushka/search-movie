@@ -101,6 +101,11 @@
         margin-bottom: 3rem;
     }
 
+    .pages-container{
+        display: flex;
+        align-items: center;
+    }
+
     .button-pagination {
         margin: 0 0.5rem;
         width: 2rem;
@@ -126,6 +131,14 @@
 
     .button-classic{
         padding: 0.5rem;
+    }
+
+    @media (max-width: 375px) {
+        .button-pagination {
+            margin: 0 0.3rem;
+            border-radius: 3px;
+        }
+
     }
 
 

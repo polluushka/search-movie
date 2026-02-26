@@ -28,10 +28,6 @@
         display: flex;
     }
 
-    .search-input{
-        margin-right: 0.3rem;
-    }
-
     .search-input::placeholder {
         color: var(--placeholder-color);
     }

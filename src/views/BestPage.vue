@@ -1,8 +1,12 @@
 <template>
     <div class="filters-container">
 
-        <ui-filter :genres="genres" @filterData="getDataFilter"></ui-filter>
-        <ui-sorting @sortData="getDataSort"></ui-sorting>
+        <div class="filter-item-container">        
+            <ui-filter :genres="genres" @filterData="getDataFilter"></ui-filter>
+            <ui-sorting @sortData="getDataSort"></ui-sorting>
+        </div>
+
+
       
     </div>
 
@@ -154,7 +158,4 @@
         justify-content: end;
     }
 
-    .filter-container{
-        margin-right: 1rem;
-    }
 </style>

@@ -75,6 +75,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        text-align: center;
     }
 
     .link-logo-tmdb{
@@ -86,4 +87,11 @@
         margin-bottom: 0.5rem;
     }
 
+    @media (max-width: 375px) {
+
+        .link-logo-tmdb{
+            width: 90%;
+        }
+
+    }
 </style>

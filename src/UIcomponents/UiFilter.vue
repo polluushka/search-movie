@@ -132,7 +132,7 @@
 <style scoped> 
 
     .filter-container{
-        width: 19%;
+        width: 44%;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -144,7 +144,6 @@
         align-items: center;
         justify-content: space-between;
         height: 100%;
-        
     }
 
     .hidden-menu{
@@ -157,17 +156,11 @@
         position: absolute;
         padding: 1rem;
         margin-top: 3rem;
-        background-color: var(--surface-background);
+        background: var(--filter-background-hover);
         border-radius: 5px;
         font-size: 0.75rem;
         color: var(--title-color);
-        transition: 0.3s;
-    }
-
-    .filter-menu-container:hover{
-        background: var(--filter-background-hover);
         box-shadow: 1px 1px 10px 5px var(--surface-background);
-        transition: 0.3s;
     }
 
     .genres-filter-container{
@@ -188,13 +181,13 @@
 
     .filter-button-menu:hover{
         background-color: var(--title-color);
-        color: #181b22;
+        color: var(--surface-background);
         transition: 0.2s;
     }
 
     .active-button {
         background-color: var(--title-color);
-        color: #181b22;
+        color: var(--surface-background);
     }
 
     .title-filter {
@@ -239,6 +232,30 @@
         border-radius: 5px;
         padding: 0.5rem;
         width: 80%;
+    }
+
+    .button-classic {
+        padding: 0.5rem 1rem;
+    }
+
+
+    @media (max-width: 375px) {
+        .filter-container{
+            align-items: start;
+        }
+
+        .filter-menu-container{
+            width: 350px;
+            z-index: 100;
+            position: absolute;
+            padding: 1rem;
+            margin-top: 3rem;
+            background-color: var(--surface-background);
+            border-radius: 5px;
+            font-size: 0.75rem;
+            color: var(--title-color);
+            transition: 0.3s;
+        }
     }
 
 </style>
